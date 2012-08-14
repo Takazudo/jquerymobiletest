@@ -29,7 +29,7 @@
 	<script>
 		$.mobile.ajaxEnabled = false
 		var applyListToggle = function() {
-			var $root = $('#arealist');
+			var $root = $('#main');
 			var $lis = $root.find('li');
 			var $dividers = $lis.filter(function(i, el) {
 				return $(el).hasClass('arealist-childdivider');
@@ -65,7 +65,7 @@
 		});
 	</script>
 	<script type="text/x-mytmpl" id="pagesrc">
-		<ul data-role="listview" id="arealist">
+		<ul data-role="listview">
 			<li class="arealist-childdivider" data-role="list-divider">A</li>
 			<li class="arealist-child"><a href="http://example.com">Adam Kinkaid<span class="note">東京都品川区まるばつさんかく123</span></a></li>
 			<li class="arealist-child"><a href="http://example.com">Alex Wickerham<span class="note">東京都品川区まるばつさんかく123</span></a></li>
@@ -111,13 +111,12 @@
 
 	<div data-role="header">
 		<h1>List test</h1>
-	</div><!-- /header -->
+	</div>
 
-	<div data-role="content" id="main">
-	</div><!-- /content -->
+	<div data-role="content" id="main"></div>
 
 	<div data-role="footer" class="footer-docs" data-theme="a">
-			<p>&copy; 2012 foobar</p>
+		<p>&copy; 2012 foobar</p>
 	</div>
 
 </div><!-- /page -->
