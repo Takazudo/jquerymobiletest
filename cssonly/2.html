@@ -28,7 +28,7 @@
 	</style>
 	<script>
 		$.mobile.ajaxEnabled = false
-		$(function() {
+		var applyListToggle = function() {
 			var $root = $('#arealist');
 			var $lis = $root.find('li');
 			var $dividers = $lis.filter(function(i, el) {
@@ -57,19 +57,14 @@
 				var $children = findChildrenOf(this);
 				$children.toggle();
 			});
+		};
+		$(function() {
+			var src = $('#pagesrc').html();
+			$('#main').html(src).trigger('create');
+			applyListToggle();
 		});
 	</script>
-</head> 
-<body> 
-
-<div data-role="page">
-
-	<div data-role="header">
-		<h1>List test</h1>
-	</div><!-- /header -->
-
-	<div data-role="content">	
-
+	<script type="text/x-mytmpl" id="pagesrc">
 		<ul data-role="listview" id="arealist">
 			<li class="arealist-childdivider" data-role="list-divider">A</li>
 			<li class="arealist-child"><a href="http://example.com">Adam Kinkaid<span class="note">東京都品川区まるばつさんかく123</span></a></li>
@@ -108,7 +103,17 @@
 			<li class="arealist-childdivider" data-role="list-divider">S</li>
 			<li class="arealist-child"><a href="http://example.com">Sawyer Wakefield</a></li>
 		</ul>
+	</script>
+</head> 
+<body> 
 
+<div data-role="page">
+
+	<div data-role="header">
+		<h1>List test</h1>
+	</div><!-- /header -->
+
+	<div data-role="content" id="main">
 	</div><!-- /content -->
 
 	<div data-role="footer" class="footer-docs" data-theme="a">
