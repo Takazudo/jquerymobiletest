@@ -1,0 +1,121 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<meta charset="utf-8">
+	<title>My Page</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+	<style>
+		.arealist-childdivider {
+			cursor:pointer;
+		}
+		.arealist-child .note {
+			display:block;
+			font-weight:normal;
+			padding:3px 0 0;
+			font-size:.8em;
+		}
+		.arealist-child {
+			display:none;
+			cursor:pointer;
+		}
+		.ui-footer p {
+			padding-left:10px;
+			font-weight:normal;
+		}
+	</style>
+	<script>
+		$.mobile.ajaxEnabled = false
+		$(function() {
+			var $root = $('#arealist');
+			var $lis = $root.find('li');
+			var $dividers = $lis.filter(function(i, el) {
+				return $(el).hasClass('arealist-childdivider');
+			});
+			var findChildrenOf = function(divider) {
+				var dividerFound = false;
+				var $res = $();
+				$lis.each(function(e, el) {
+					if(el === divider) {
+						dividerFound = true;
+						return;
+					}
+					if(dividerFound === false) {
+						return;
+					}
+					if($(el).hasClass('arealist-childdivider')) {
+						return false;
+					} else {
+						$res = $res.add(el);
+					}
+				});
+				return $res;
+			};
+			$dividers.on('click', function() {
+				var $children = findChildrenOf(this);
+				$children.toggle();
+			});
+		});
+	</script>
+</head> 
+<body> 
+
+<div data-role="page">
+
+	<div data-role="header">
+		<h1>List test</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+
+		<ul data-role="listview" id="arealist">
+			<li class="arealist-childdivider" data-role="list-divider">A</li>
+			<li class="arealist-child"><a href="http://example.com">Adam Kinkaid<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-child"><a href="http://example.com">Alex Wickerham<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-child"><a href="http://example.com">Avery Johnson<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-childdivider" data-role="list-divider">B</li>
+			<li class="arealist-child"><a href="http://example.com">Bob Cabot<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-childdivider" data-role="list-divider">C</li>
+			<li class="arealist-child"><a href="http://example.com">Caleb Booth<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-child"><a href="http://example.com">Christopher Adams<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-child"><a href="http://example.com">Culver James<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-childdivider" data-role="list-divider">D</li>
+			<li class="arealist-child"><a href="http://example.com">David Walsh<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-child"><a href="http://example.com">Drake Alfred<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-childdivider" data-role="list-divider">E</li>
+			<li class="arealist-child"><a href="http://example.com">Elizabeth Bacon<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-child"><a href="http://example.com">Emery Parker<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-child"><a href="http://example.com">Enid Voldon<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-childdivider" data-role="list-divider">F</li>
+			<li class="arealist-child"><a href="http://example.com">Francis Wall<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-childdivider" data-role="list-divider">G</li>
+			<li class="arealist-child"><a href="http://example.com">Graham Smith<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-child"><a href="http://example.com">Greta Peete<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-childdivider" data-role="list-divider">H</li>
+			<li class="arealist-child"><a href="http://example.com">Harvey Walls<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-childdivider" data-role="list-divider">M</li>
+			<li class="arealist-child"><a href="http://example.com">Mike Farnsworth<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-child"><a href="http://example.com">Murray Vanderbuilt<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-childdivider" data-role="list-divider">N</li>
+			<li class="arealist-child"><a href="http://example.com">Nathan Williams<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-childdivider" data-role="list-divider">P</li>
+			<li class="arealist-child"><a href="http://example.com">Paul Baker<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-child"><a href="http://example.com">Pete Mason<span class="note">東京都品川区まるばつさんかく123</span></a></li>
+			<li class="arealist-childdivider" data-role="list-divider">R</li>
+			<li class="arealist-child"><a href="http://example.com">Rod Tarker</a></li>
+			<li class="arealist-childdivider" data-role="list-divider">S</li>
+			<li class="arealist-child"><a href="http://example.com">Sawyer Wakefield</a></li>
+		</ul>
+
+	</div><!-- /content -->
+
+	<div data-role="footer" class="footer-docs" data-theme="a">
+			<p>&copy; 2012 foobar</p>
+	</div>
+
+</div><!-- /page -->
+
+</body>
+</html>
