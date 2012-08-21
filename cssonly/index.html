@@ -16,11 +16,44 @@
 	<script>
 		$.mobile.ajaxEnabled = false
 		$(function() {
-			var src = $('#pagesrc').html();
-			$('#main').html(src).trigger('create');
+			var $main = $('#main');
+			var $title = $('#header-title');
+			var $btn_back = $('#header-back');
+			var showIndex = function() {
+				var src = $('#firstchoose').html();
+				$main.html(src).trigger('create');
+				$btn_back.hide();
+				$title.text('index');
+			};
+			var showLeaf = function() {
+				var src = $('#leafsrc').html();
+				$main.html(src).trigger('create');
+				$btn_back.show();
+				$title.text('leaf');
+			};
+			$(document)
+				.delegate('#header-back', 'click', function(e) {
+					e.preventDefault();
+					showIndex();
+				})
+				.delegate('#firstchoose-a', 'click', function(e) {
+					e.preventDefault();
+					showLeaf();
+				})
+				.delegate('#firstchoose-b', 'click', function(e) {
+					e.preventDefault();
+					showLeaf();
+				});
+			showIndex();
 		});
 	</script>
-	<script type="text/x-mytmpl" id="pagesrc">
+	<script type="text/x-mytmpl" id="firstchoose">
+		<ul data-role="listview" data-inset="true">
+			<li><a href="#" id="firstchoose-a">A</a></li>
+			<li><a href="#" id="firstchoose-b">B</a></li>
+		</ul>
+	</script>
+	<script type="text/x-mytmpl" id="leafsrc">
 		<ul data-role="listview">
 			<li data-role="list-divider">A</li>
 			<li><a href="http://example.com">Adam Kinkaid</a></li>
@@ -65,8 +98,10 @@
 
 <div data-role="page">
 
-	<div data-role="header">
-		<h1>List test</h1>
+	<div data-role="header" data-position="fixed">
+		<h1 id="header-title">List test</h1>
+		<a id="header-home" href="http://example.com" data-icon="home" data-iconpos="notext">Home</a>
+		<a id="header-back" href="#" data-icon="arrow-l" data-iconpos="notext" style="display:none">back</a>
 	</div>
 
 	<div data-role="content" id="main"></div>
